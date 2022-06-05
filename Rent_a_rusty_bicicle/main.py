@@ -1,6 +1,7 @@
 from rent import PartnerManagement
 from rent import ClientManagement
 from rent import RentManagement
+import db
 
 
 def main_menu():
@@ -10,14 +11,14 @@ def main_menu():
     print("4. List Bills")
     print("5. Incoming Report")
     print("0. Exit")
-    opt = input("Type an option >> ")
+    opt = int(input("Type an option >> "))
     return opt
 
 
 if __name__ == '__main__':
+    partners_management = PartnerManagement().load_all_partners()
+    clients_management = ClientManagement().load_all_clients()
 
-    partners_management = PartnerManagement()
-    clients_management = ClientManagement()
     rent_management = RentManagement(partners_management, clients_management)
 
     option = -1
@@ -28,8 +29,8 @@ if __name__ == '__main__':
         if option == 1:
             rent_management.rent()
         elif option == 2:
-            rent_management.return_bycicle()
-        elif option == 3:
+            rent_management.return_bicycle()
+        if option == 3:
             print(rent_management.bicycles_list())
         elif option == 4:
             print(rent_management.bills_list())
