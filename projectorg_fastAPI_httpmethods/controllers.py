@@ -97,15 +97,17 @@ class RentManagement:
 
     @staticmethod
     def bicycles_list() -> list:
-        return [bike for bike in db.bikes]
+        return db.load_bikes()
 
     @staticmethod
     def add_bike(bike):
         db.bikes.append(bike)
+        db.save_bike()
 
     @staticmethod
     def remove_bike_id(Id: int):
-        [db.bikes.remove(bike) for bike in db.bikes if bike.bike_id == Id]
+        [db.load_bikes().remove(bike) for bike in db.load_bikes() if bike.bike_id == Id]
+        db.save_bike()
 
     def report(self) -> str:
         total = 0.0

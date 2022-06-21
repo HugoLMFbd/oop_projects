@@ -1,7 +1,7 @@
 from controllers import PartnerManagement
 from controllers import ClientManagement
 from controllers import RentManagement
-
+import db
 
 def main_menu():
     print("1. Rent a Bike")
@@ -15,6 +15,8 @@ def main_menu():
 
 
 if __name__ == '__main__':
+    db.save_bike()
+    db.load_bikes()
     partners_management = PartnerManagement().load_all_partners()
     clients_management = ClientManagement().load_all_clients()
     rent_management = RentManagement(partners_management, clients_management)

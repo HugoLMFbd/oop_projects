@@ -1,5 +1,7 @@
 import controllers as con
 from fastapi import APIRouter
+
+import db
 from models import Bike
 
 rusty_bikes_routes = APIRouter()
@@ -10,6 +12,7 @@ rent_controller = con.RentManagement(partners_controller, clients_controller)
 
 @rusty_bikes_routes.get('/bikes')
 def get_bike():
+    db.load_bikes()
     return rent_controller.bicycles_list()
 
 

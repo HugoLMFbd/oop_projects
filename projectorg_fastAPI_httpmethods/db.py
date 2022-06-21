@@ -2,6 +2,8 @@ from models import Bike
 from models import Client
 from models import Partner
 from models import Bill_
+import pickle
+
 
 # Bikes
 
@@ -29,3 +31,14 @@ clients = [angela, stuart, ines]
 partners = [samuel, andrea]
 bikes = [bike1, bike2]
 bills = [bill1, bill2]
+
+
+def load_bikes():
+    with open('bikes.pickle', 'rb') as file:
+        bycicles = pickle.load(file)
+        return [bike for bike in bycicles]
+
+
+def save_bike():
+    with open('bikes.pickle', 'wb') as file:
+        pickle.dump(bikes, file)
